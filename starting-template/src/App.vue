@@ -6,12 +6,12 @@
         <div class="container">
             <h1 class="pt-3 pb-3">Персонажи Marvel</h1>
 
-            <pre>characterIndex: {{characterIndex}}</pre>
+          
             <!--    <pre>{{characters}}</pre> -->
 
             <app-modal :character="characters[characterIndex]"/>
 
-            <spinner/>
+            <spinner v-if="loading"/>
 
             <div class="row">
 
@@ -74,8 +74,10 @@
                 
         },
         computed: {},
-        mounted() {
-            this.fetchCharacters();
+        async mounted() {
+            this.loading = true;
+            await this.fetchCharacters();
+            this.loading = false;
         }
     }
 </script>

@@ -11,14 +11,14 @@
 
                     <img :src="character.thumbnail" class="img-fluid rounded-start" :alt="character.name">
                     <div>
+                        <p class="text-muted">{{character.modified}}</p>
                         <h5>Описание:</h5>
-                        <p>Укушенный радиоактивным пауком, старшеклассник Питер Паркер обрел скорость, силу и силу паука. Приняв имя Человек-паук, Питер надеялся начать карьеру, используя свои новые способности. Наученный тому, что с большой силой приходит
-                            большая ответственность, Паук поклялся использовать свои силы, чтобы помогать людям.</p>
+                        <p>{{character.description}}</p>
                         <h5>Комиксы:</h5>
                         <ul>
-                            <li>Spider-Man: 101 Ways to End the Clone Saga (1997) #1</li>
-                            <li>Spider-Man: 101 Ways to End the Clone Saga (1997) #1</li>
-                            <li>Spider-Man: 101 Ways to End the Clone Saga (1997) #1</li>
+                            <li v-for="(el,idx) in character.comics"
+                            :key="idx"
+                            >{{el.name}}</li>
                         </ul>
                     </div>
                 </div>
