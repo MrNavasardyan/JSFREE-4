@@ -1,10 +1,11 @@
 <template>
     <div id="app">
 
-        <app-header/>
+        <app-header :changeSearch="changeSearch" />
 
         <div class="container">
             <h1 class="pt-3 pb-3">Персонажи Marvel</h1>
+            <pre>APP search: {{search}}</pre>
 
           
             <!--    <pre>{{characters}}</pre> -->
@@ -63,6 +64,7 @@
                 loading: false,
                 characters: [],
                 characterIndex: 0,
+                search: ''
             }
         },
         methods: {
@@ -71,9 +73,19 @@
                         .then(res => res.json())
                         .then(json => this.characters = json);
             },
+            changeSearch: function (value) {
+                this.search = value;
+            }
                 
         },
-        computed: {},
+        computed: {
+            character: function() {
+                const {characters,search} = this;
+                return characters.filter((character) => {
+                    return character.name.indexOf(search) !== -1
+                })
+            }
+        },
         async mounted() {
             this.loading = true;
             await this.fetchCharacters();

@@ -2,9 +2,12 @@
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand">Marvel</a>
+
+
+            
             <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
-                <button class="btn btn-outline-info">Все</button>
+                <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search" v-model="search" @input="changeSearch(search)">
+                <button type="reset" class="btn btn-outline-info"> Поиск</button>
 
             </form>
         </div>
@@ -14,8 +17,10 @@
 <script>
     export default {
         name: "AppHeader",
+        props: ['changeSearch'],
         data() {
             return {
+                search: '',
             }
         },
     }
