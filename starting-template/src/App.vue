@@ -5,18 +5,19 @@
 
         <div class="container">
             <h1 class="pt-3 pb-3">Персонажи Marvel</h1>
-            <pre>APP search: {{search}}</pre>
+
+           
 
           
             <!--    <pre>{{characters}}</pre> -->
 
-            <app-modal :character="characters[characterIndex]"/>
+            <app-modal :character="character[characterIndex]"/>
 
             <spinner v-if="loading"/>
 
             <div class="row">
 
-        <div v-for="(el, idx) in characters"
+        <div v-for="(el, idx) in character"
                 :key="el.id"
             class="card mb-3 col-sm-12 col-md-6 col-lg-4">
             <div class="row g-0">
@@ -82,7 +83,7 @@
             character: function() {
                 const {characters,search} = this;
                 return characters.filter((character) => {
-                    return character.name.indexOf(search) !== -1
+                    return character.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
                 })
             }
         },
